@@ -1,31 +1,75 @@
-const express = require('express')
-const app = express()
-const port = 3000
-app.set('view engine', 'ejs')
-app.use(express.static(__dirname + '/views'));
+require('dotenv').config();
+const path = require('path');
+const express = require('express');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
+const flash = require('express-flash');
+const passport = require('passport');
+const helper = require('./scripts/helpers.js');
+require('./scripts/mongoDataConnector.js').connect();
 
-const posts = [
-    {title: 'Title 1', body: 'Body 1' },
-    {title: 'Title 2', body: 'Body 2' },
-    {title: 'Title 3', body: 'Body 3' },
-    {title: 'Title 4', body: 'Body 4' },
-]
-const user = {
-    firstName: 'Tim',
-    lastName: 'Cook',
-}
-app.get('/', (req, res) => {
-  res.render('pages/index', {
-      user,
-      title: "Home Page"
+const app = express();
+
+app.set('views', './views');
+app.set('view engine', 'ejs');
+
+app.use('/static', express.static(path.join(__dirname, 'public')));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(cookieParser('oreos'));
+app.use(
+  session({
+    secret: process.env.SECRET,
+    resave: true,
+    saveUninitialized: true
   })
-})
-app.get('/articles', (req, res) => {
-  res.render('pages/articles', {
-      articles: posts,
-      title: "Articles"
-  })
-})
-app.listen(port, () => {
-  console.log(`App listening at port ${port}`)
-})
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(flash());
+
+require('./scripts/auth.js');
+
+app.get('/', helper.ensureAuthenticated, (req, res) => {
+  res.render('home.ejs',
+    { user: req.user });
+});
+
+// login and logout routers here
+app.get('/login', (req, res) => {
+  res.render('login.ejs', { message: req.flash('error') });
+});
+
+app.post('/login', async (req, resp, next) => {
+  // use passport authentication to see if valid login
+  passport.authenticate('localLogin',
+    {
+      successRedirect: '/',
+      failureRedirect: '/login',
+      failureFlash: true
+    })(req, resp, next);
+});
+
+app.get('/logout', (req, res) => {
+  req.logout(function (err) {
+    if (err) { return next(err); }
+    req.flash('info', 'You were logged out');
+    res.render('login', { message: req.flash('info') });
+  });
+
+
+});
+
+// customize the 404 error with our own middleware function
+app.use(function (req, res, next) {
+  res.status(404).send("Sorry can't find that!")
+});
+
+const port = process.env.port;
+app.listen(port, function () {
+  console.log("Server running at port= " + port);
+});
