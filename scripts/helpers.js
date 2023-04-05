@@ -5,7 +5,7 @@ function ensureAuthenticated (req, resp, next) {
       return next();
     }
     req.flash('info', '');
-    resp.render('login', {message: req.flash('info')} );
+    resp.render('login2', {message: req.flash('info')} );
  }
  
  module.exports = { ensureAuthenticated };
