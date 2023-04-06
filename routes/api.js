@@ -1,9 +1,15 @@
 
 const express = require("express")
-const Movie = require("./models/Movie") // new
+const Movie = require("../models/Movie") // new
+const UserModel = require('../models/User');
 const router = express.Router()
 
 // Get all posts
+router.get("/users", async (req, res) => {
+  const users = await UserModel.find()
+  res.send(users)
+})
+
 router.get("/movies", async (req, res) => {
 	const movies = await Movie.find()
 	res.send(movies)

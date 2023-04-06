@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const schema = mongoose.Schema({
+const schema = new mongoose.Schema({
   id: Number,
   tmdb_id: Number,
   imdb_id: String,
@@ -23,6 +23,6 @@ const schema = mongoose.Schema({
       name: String
     }]
   }
-}, { collection: 'movies' });
+});
 
-module.exports = mongoose.model('Movie', schema);
+module.exports = mongoose.model('Movie', schema, 'movies');
