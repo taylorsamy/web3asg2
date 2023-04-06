@@ -1,45 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <%- include('./partials/loginHead'); %>
+  </head>
+  <body>
+    <%- include('./partials/header'); %>
 
-<head>
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link rel="stylesheet" type="text/css" href="static/styles2.css">
-<body>
-
-   <section class="section">
-      <div class="container">
-         <h1 class="title">Login</h1>
-         <div class="box">
-            <form action="/login" method="post">
-               <div class="field">
-                  <label class="label">Email</label>
-                  <div class="control">
-                     <input class="input" type="email" placeholder="e.g. zpochet2@apple.com" name="email" id="email">
-                  </div>
-               </div>
-
-               <div class="field">
-                  <label class="label">Password</label>
-                  <div class="control">
-                     <input class="input" type="password" name="password" id="password" placeholder="mypassword">
-                  </div>
-               </div>
-               <div class="control">
-                  <button type="submit" class="button is-link">Login Locally</button>
-               </div>
-               <% if (message) { %>
-                  <p id="msg2" class="help is-danger">
-                     <%= message %>
-                  </p>
-                  <% } %>
-
-
-
-            </form>
-         </div>
+    <div class="container">
+      <div class="leftContainer">
+        <div>
+          <p class="mainText">WELCOME TO OUR ASSIGNMENT II.</p>
+          <p class="secondaryText">NODEJS. MONGODB. EXPRESS JS.</p>
+        </div>
       </div>
-   </section>
-</body>
+      <div class="rightContainer">
+        <div class="form-box">
+          <span class="borderline"></span>
+          <form action="/login" method="post">
+            <p>Login</p>
+            <div class="field">
+              <ion-icon name="mail-outline"></ion-icon>
+              <input
+                class="input"
+                type="email"
+                placeholder="zpochet2@apple.com"
+                name="email"
+                id="email"
+                required
+              />
+              <label for="">Email</label>
+            </div>
 
+            <div class="field">
+              <ion-icon name="lock-closed-outline"></ion-icon>
+              <input
+                class="input"
+                type="password"
+                name="password"
+                id="password"
+                placeholder="mypassword"
+                required
+              />
+              <label for="">Password</label>
+            </div>
+            <button type="submit" class="button btn is-link">Login</button>
+            <% if (message) { %>
+            <p id="msg2" class="help is-danger"><%= message %></p>
+            <% } %>
+          </form>
+        </div>
+      </div>
+    </div>
+    <%- include('./partials/footer'); %>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
 </html>

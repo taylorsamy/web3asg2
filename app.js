@@ -40,7 +40,7 @@ app.get('/', helper.ensureAuthenticated, (req, res) => {
 });
 
 // login and logout routers here
-app.get('/login2', (req, res) => {
+app.get('/login', (req, res) => {
   res.render('login.ejs', { message: req.flash('error') });
 });
 
@@ -58,7 +58,7 @@ app.get('/logout', (req, res) => {
   req.logout(function (err) {
     if (err) { return next(err); }
     req.flash('info', 'You were logged out');
-    res.render('login2', { message: req.flash('info') });
+    res.render('login', { message: req.flash('info') });
   });
 
 
