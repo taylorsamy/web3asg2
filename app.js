@@ -41,7 +41,10 @@ app.get('/', helper.ensureAuthenticated, (req, res) => {
 
 // login and logout routers here
 app.get('/login', (req, res) => {
-  res.render('login.ejs', { message: req.flash('error') });
+  if(req.isAuthenticated()){
+    return res.redirect('/');
+  }
+  res.render('login.ejs', { message: req.flash('error'), user: null });
 });
 
 app.post('/login', async (req, resp, next) => {
@@ -55,10 +58,13 @@ app.post('/login', async (req, resp, next) => {
 });
 
 app.get('/logout', (req, res) => {
+  if(!req.isAuthenticated()){
+    return res.redirect('/');
+  }
   req.logout(function (err) {
     if (err) { return next(err); }
     req.flash('info', 'You were logged out');
-    res.render('login', { message: req.flash('info') });
+    res.render('login', { message: req.flash('info'), user: null });
   });
 
 
