@@ -12,6 +12,19 @@ body {
   z-index: 1;
 }
 
+body {
+  animation: 1.3s brightness;
+}
+
+@keyframes brightness {
+  0% {
+    filter: brightness(0.15);
+  }
+  100% {
+    filter: brightness(1);
+  }
+}
+
 #bg {
   position: absolute;
   top: 0;
