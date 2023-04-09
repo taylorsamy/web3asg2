@@ -1,15 +1,14 @@
 <% if (user == null) {%>
-    <header class="headerContainer">
-        <p>Web III: Advanced Web Development</p>
-        <p>Assignment II</p>
-     </header>
+<header class="headerContainer">
+  <p>Web III: Advanced Web Development</p>
+  <p>Assignment II</p>
+</header>
+<% } %> <% if (user) {%>
+<header class="headerContainer">
+  <p>Web III: Advanced Web Development</p>
+  <p>Assignment II</p>
+  <a href="/logout" target="_blank" class="logoutIcon"
+    ><ion-icon name="power-sharp"></ion-icon
+  ></a>
+</header>
 <% } %>
-
-<% if (user) {%>
-    <header class="headerContainer">
-        <p>Web III: Advanced Web Development</p>
-        <p>Assignment II</p>
-        <p>log out</p>
-     </header>
-<% } %>
-

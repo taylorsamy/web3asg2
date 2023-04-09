@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+
+body {
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  font-family: "Montserrat", sans-serif, Georgia;
+  color: white;
+  background-color: black;
+  z-index: 1;
+}
+
+#bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.headerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+  color: white;
+  font-weight: 300;
+  margin-top: 10px;
+  font-size: 30px;
+  position: absolute;
+  width: 100%;
+}
+
+.logoutIcon {
+  z-index: 3;
+}
+
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 3.5rem;
+  letter-spacing: 2px;
+}
+
+.logoutContainer {
+  display: flex;
+  font-size: 1.2rem;
+  justify-content: center;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.mainText {
+  margin-bottom: 0;
+}
+
+.secondaryText {
+  margin-top: 3px;
+  color: rgba(255, 255, 255);
+  text-transform: uppercase;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
+  text-align: center;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 1.3em;
+  gap: 50px;
+}
+
+ion-icon {
+  font-size: 2.5rem;
+  transition: 0.7s;
+  color: white;
+}
+
+ion-icon:hover {
+  color: red;
+}

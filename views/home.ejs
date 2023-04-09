@@ -1,22 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>Home</title>
+    <%- include('./partials/head'); %>
+  </head>
 
-<head>
-   <%- include('./partials/head'); %>
-</head>
+  <body>
+    <%- include('./partials/header'); %>
+    <div id="bg"></div>
+    <div class="mainContainer">
+      <div class="userContainer">
+        <p class="mainText">WELCOME HOME,</p>
+        <p class="secondaryText">
+          <%= user.details.firstname %> <%= user.details.lastname %>
+        </p>
+      </div>
+      <div class="logoutContainer">
+        <p>Feeling like leaving? Just click the icon on the top right!</p>
+      </div>
+    </div>
 
-<body>
-   <%- include('./partials/header'); %>
-      <main class="book">
-         <%- include('./partials/sidebar'); %>
-            <section class="pagecontent">
+    <%- include('./partials/footer'); %>
 
-               Welcome <%= user.details.firstname %>
-                  <%= user.details.lastname %>
-
-            </section>
-      </main>
-      <%- include('./partials/footer'); %>
-</body>
-
+    <!-- /* -------PARTICLE ANIMATIONS----------------------------------------
+/* Author : Vincent Garreau  - vincentgarreau.com
+/* MIT license: http://opensource.org/licenses/MIT
+/* Demo / Generator : vincentgarreau.com/particles.js
+/* GitHub : github.com/VincentGarreau/particles.js
+/* How to use? : Check the GitHub README
+/* v2.0.0
+/* ----------------------------------------------- */ -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="static/js/particles.min.js"></script>
+    <script src="static/js/particleanimation.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
 </html>
